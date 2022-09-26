@@ -13,7 +13,7 @@ class QizeScreen extends StatelessWidget {
         elevation: 0.0,
         actions: [TextButton(onPressed: () {}, child: Text('Skip'))],
       ),
-      body: MainBody(),
+      body: const MainBody(),
     );
   }
 }
