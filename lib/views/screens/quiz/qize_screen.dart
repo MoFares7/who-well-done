@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:websafe_svg/websafe_svg.dart';
+import 'package:quiz_app/views/screens/quiz/components/main_body_questions.dart';
 
 class QizeScreen extends StatelessWidget {
   const QizeScreen({super.key});
@@ -13,11 +13,7 @@ class QizeScreen extends StatelessWidget {
         elevation: 0.0,
         actions: [TextButton(onPressed: () {}, child: Text('Skip'))],
       ),
-      body: Stack(
-        children: [
-          WebsafeSvg.asset('assets/icons/bg.svg'),
-        ],
-      ),
+      body: MainBody(),
     );
   }
 }
