@@ -14,10 +14,10 @@ class ProgressBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 35,
-      color: Colors.white,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
-        border: Border.all(color: const Color(0xFF3F4768), width: 3),
+        color: Colors.white,
+        //  border: Border.all(color: const Color(0xFF3F4768), width: 3),
       ),
       child: GetBuilder<QuestionController>(
         init: QuestionController(),

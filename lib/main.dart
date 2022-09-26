@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/views/screens/quiz/components/main_body_questions.dart';
+import 'package:quiz_app/views/screens/quiz/qize_screen.dart';
 import 'package:quiz_app/views/screens/welcom_screen/welcome_screen.dart';
 
 void main() {
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Who Well Done',
       theme: ThemeData.dark(),
-      home: WelcomeSceen(),
+      home: QizeScreen(),
     );
   }
 }
