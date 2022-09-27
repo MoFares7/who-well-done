@@ -31,10 +31,7 @@ class QuestionCard extends StatelessWidget {
           const SizedBox(
             height: kDefaultPadding / 2,
           ),
-          const Options(),
-          const Options(),
-          const Options(),
-          const Options(),
+      ...List.generate(question.options.length, (index) => Options(text: question.options[index], index: index, press: (){}))
         ],
       ),
     );
@@ -44,35 +41,44 @@ class QuestionCard extends StatelessWidget {
 class Options extends StatelessWidget {
   const Options({
     Key? key,
+    required this.text,
+    required this.index,
+    required this.press,
   }) : super(key: key);
 
+  final String text;
+  final int index;
+  final VoidCallback press;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: kDefaultPadding),
-      padding: const EdgeInsets.all(kDefaultPadding),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: kGrayColor),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            '1. Test',
-            style: TextStyle(color: kGrayColor, fontSize: 16),
-          ),
-          Container(
-            height: 26,
-            width: 26,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(
-                color: kGrayColor,
-              ),
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        margin: const EdgeInsets.only(top: kDefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: kGrayColor),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+             Text(
+              '${index + 1} $text',
+              style: const TextStyle(color: kGrayColor, fontSize: 16),
             ),
-          )
-        ],
+            Container(
+              height: 26,
+              width: 26,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  color: kGrayColor,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
