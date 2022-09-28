@@ -1,5 +1,8 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:quiz_app/config/constants.dart';
+import 'package:quiz_app/views/screens/quiz/qize_screen.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class WelcomeSceen extends StatelessWidget {
@@ -39,7 +42,12 @@ class WelcomeSceen extends StatelessWidget {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const QizeScreen()));
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(kDefaultPadding * 0.75),
                       width: double.infinity,

@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:quiz_app/config/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:websafe_svg/websafe_svg.dart';

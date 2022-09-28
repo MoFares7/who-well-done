@@ -1,6 +1,7 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:quiz_app/config/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/models/questions.dart';
 import 'package:quiz_app/views/screens/quiz/components/question_card.dart';
 import 'package:quiz_app/views/screens/quiz/components/progress_bar.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -14,7 +15,7 @@ class MainBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    QuestionController _questionController = Get.put(QuestionController());
+    QuestionController questionController = Get.put(QuestionController());
     return Stack(
       children: [
         WebsafeSvg.asset('assets/icons/bg.svg', width: double.infinity),
@@ -36,14 +37,14 @@ class MainBody extends StatelessWidget {
                     () => Text.rich(
                       TextSpan(
                         text:
-                            "Question ${_questionController.questionNumber.value}",
+                            "Question ${questionController.questionNumber.value}",
                         style: Theme.of(context)
                             .textTheme
                             .headline4
                             ?.copyWith(color: kSecondaryColor),
                         children: [
                           TextSpan(
-                            text: "/${_questionController.questions.length}",
+                            text: "/${questionController.questions.length}",
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5
@@ -62,12 +63,12 @@ class MainBody extends StatelessWidget {
                 ),
                 Expanded(
                   child: PageView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    controller: _questionController.pageController,
-                    onPageChanged: _questionController.updateTheQnNum,
-                    itemCount: _questionController.questions.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: questionController.pageController,
+                    onPageChanged: questionController.updateTheQnNum,
+                    itemCount: questionController.questions.length,
                     itemBuilder: ((context, index) => QuestionCard(
-                          question: _questionController.questions[index],
+                          question: questionController.questions[index],
                         )),
                   ),
                 ),

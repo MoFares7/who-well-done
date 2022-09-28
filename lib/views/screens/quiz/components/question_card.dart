@@ -1,9 +1,8 @@
-// ignore_for_file: unrelated_type_equality_checks
+// ignore_for_file: unrelated_type_equality_checks, depend_on_referenced_packages
 
 import 'package:quiz_app/config/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/questions.dart';
-import 'package:websafe_svg/websafe_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -65,7 +64,7 @@ class Options extends StatelessWidget {
       init: QuestionController(),
       builder: (controller) {
         Color getTheRightColor() {
-          if (controller.isAnswared) {
+          if (controller.isAnswered) {
             if (index == controller.correctAns) {
               return kGreenColor;
             } else if (index == controller.selectedAns &&

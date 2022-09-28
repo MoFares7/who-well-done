@@ -1,34 +1,35 @@
-// ignore_for_file: deprecated_member_use, depend_on_referenced_packages
+// ignore_for_file: deprecated_member_use, depend_on_referenced_packages, prefer_final_fields
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/models/questions.dart';
+import 'package:quiz_app/views/screens/result/result_screen.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
+  // Lets animated our progress bar
+
   late AnimationController _animationController;
   late Animation _animation;
-
+  // so that we can access our animation outside
   Animation get animation => _animation;
 
   late PageController _pageController;
   PageController get pageController => _pageController;
 
-  final List<Question> _questions = sample_data
+  List<Question> _questions = sample_data
       .map(
         (question) => Question(
             id: question['id'],
             question: question['question'],
-            answer: question['option'],
-            options: question['answer_index']),
+            options: question['options'],
+            answer: question['answer_index']),
       )
       .toList();
-
   List<Question> get questions => _questions;
 
-  bool _isAnswared = false;
-  bool get isAnswared => _isAnswared;
+  bool _isAnswered = false;
+  bool get isAnswered => _isAnswered;
 
   late int _correctAns;
   int get correctAns => _correctAns;
@@ -36,49 +37,34 @@ class QuestionController extends GetxController
   late int _selectedAns;
   int get selectedAns => _selectedAns;
 
+  // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
-  RxInt get questionNumber => this._questionNumber;
+  RxInt get questionNumber => _questionNumber;
 
   int _numOfCorrectAns = 0;
-  int get numOfCorrectAns => this._numOfCorrectAns;
+  int get numOfCorrectAns => _numOfCorrectAns;
 
+  // called immediately after the widget is allocated memory
   @override
   void onInit() {
+    // Our animation duration is 60 s
+    // so our plan is to fill the progress bar within 60s
     _animationController =
         AnimationController(duration: const Duration(seconds: 60), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
       ..addListener(() {
+        // update like setState
         update();
       });
 
-    //! Start our Animations
+    // start our animation
+    // Once 60s is completed go to the next qn
     _animationController.forward().whenComplete(nextQuestion);
-
     _pageController = PageController();
-
     super.onInit();
   }
 
-  void checkFromAns(Question question, int selectedIndex) {
-    _isAnswared = true;
-    _correctAns = question.answer;
-    _selectedAns = selectedIndex;
-
-    if (_correctAns == _selectedAns) {
-      _numOfCorrectAns++;
-
-      _animationController.stop();
-      update();
-
-//? this function to wait 4 second before go to next question
-      Future.delayed(const Duration(seconds: 4), () {
-        nextQuestion();
-      });
-    }
-  }
-
-  //! called just before the Controller is deleted from memory
-
+  // // called just before the Controller is deleted from memory
   @override
   void onClose() {
     super.onClose();
@@ -86,9 +72,27 @@ class QuestionController extends GetxController
     _pageController.dispose();
   }
 
+  void checkFromAns(Question question, int selectedIndex) {
+    // because once user press any option then it will run
+    _isAnswered = true;
+    _correctAns = question.answer;
+    _selectedAns = selectedIndex;
+
+    if (_correctAns == _selectedAns) _numOfCorrectAns++;
+
+    // It will stop the counter
+    _animationController.stop();
+    update();
+
+    // Once user select an ans after 3s it will go to the next qn
+    Future.delayed(const Duration(seconds: 3), () {
+      nextQuestion();
+    });
+  }
+
   void nextQuestion() {
     if (_questionNumber.value != _questions.length) {
-      _isAnswared = false;
+      _isAnswered = false;
       _pageController.nextPage(
           duration: const Duration(milliseconds: 250), curve: Curves.ease);
 
@@ -100,7 +104,7 @@ class QuestionController extends GetxController
       _animationController.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
-      //  Get.to(ScoreScreen());
+      Get.to(const ResultScreen());
     }
   }
 
