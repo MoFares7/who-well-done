@@ -61,7 +61,23 @@ class Options extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<QuestionController>(
       init: QuestionController(),
-      builder: (GetxController controller) {
+      builder: (controller) {
+        Color getTheRightColor() {
+          if (controller.isAnswared) {
+            if (index == controller.correctAns) {
+              return kGreenColor;
+            } else if (index == controller.selectedAns &&
+                controller.selectedAns != controller.correctAns) {
+              return kRedColor;
+            }
+          }
+          return kGrayColor;
+        }
+
+        IconData getTheRightIcon() {
+          return getTheRightColor() == kRedColor ? Icons.close : Icons.done;
+        }
+
         return InkWell(
           onTap: () {
             press();
@@ -71,14 +87,14 @@ class Options extends StatelessWidget {
             padding: const EdgeInsets.all(kDefaultPadding),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: kGrayColor),
+              border: Border.all(color: getTheRightColor()),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   '${index + 1} $text',
-                  style: const TextStyle(color: kGrayColor, fontSize: 16),
+                  style:  TextStyle(color: getTheRightColor(), fontSize: 16),
                 ),
                 Container(
                   height: 26,
@@ -86,7 +102,7 @@ class Options extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(
-                      color: kGrayColor,
+                      color: getTheRightColor(),
                     ),
                   ),
                 )
