@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:quiz_app/config/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/questions.dart';
@@ -94,18 +96,27 @@ class Options extends StatelessWidget {
               children: [
                 Text(
                   '${index + 1} $text',
-                  style:  TextStyle(color: getTheRightColor(), fontSize: 16),
+                  style: TextStyle(color: getTheRightColor(), fontSize: 16),
                 ),
                 Container(
                   height: 26,
                   width: 26,
                   decoration: BoxDecoration(
+                    color: getTheRightColor() == kGrayColor
+                        ? Colors.transparent
+                        : getTheRightColor(),
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(
                       color: getTheRightColor(),
                     ),
                   ),
-                )
+                  child: getTheRightIcon() == kGrayColor
+                      ? null
+                      : Icon(
+                          getTheRightIcon(),
+                          size: 18,
+                        ),
+                ),
               ],
             ),
           ),
