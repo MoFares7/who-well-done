@@ -52,7 +52,9 @@ class QuestionController extends GetxController
       });
 
     //! Start our Animations
-    _animationController.forward();
+    _animationController.forward().whenComplete(nextQuestion);
+
+    _pageController = PageController();
 
     super.onInit();
   }
@@ -70,15 +72,39 @@ class QuestionController extends GetxController
 
 //? this function to wait 4 second before go to next question
       Future.delayed(const Duration(seconds: 4), () {
-        _isAnswared = false;
-        _pageController.nextPage(
-            duration: Duration(seconds: 3), curve: Curves.ease);
-
-        //! Reset The Controller
-        _animationController.reset();
-        //! and Start agine
-        _animationController.forward();
+        nextQuestion();
       });
     }
+  }
+
+  //! called just before the Controller is deleted from memory
+
+  @override
+  void onClose() {
+    super.onClose();
+    _animationController.dispose();
+    _pageController.dispose();
+  }
+
+  void nextQuestion() {
+    if (_questionNumber.value != _questions.length) {
+      _isAnswared = false;
+      _pageController.nextPage(
+          duration: const Duration(milliseconds: 250), curve: Curves.ease);
+
+      // Reset the counter
+      _animationController.reset();
+
+      // Then start it again
+      // Once timer is finish go to the next qn
+      _animationController.forward().whenComplete(nextQuestion);
+    } else {
+      // Get package provide us simple way to naviigate another page
+      //  Get.to(ScoreScreen());
+    }
+  }
+
+  void updateTheQnNum(int index) {
+    _questionNumber.value = index + 1;
   }
 }
