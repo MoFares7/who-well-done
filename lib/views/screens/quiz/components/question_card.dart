@@ -31,7 +31,10 @@ class QuestionCard extends StatelessWidget {
           const SizedBox(
             height: kDefaultPadding / 2,
           ),
-      ...List.generate(question.options.length, (index) => Options(text: question.options[index], index: index, press: (){}))
+          ...List.generate(
+              question.options.length,
+              (index) => Options(
+                  text: question.options[index], index: index, press: () {}))
         ],
       ),
     );
@@ -52,7 +55,9 @@ class Options extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        press();
+      },
       child: Container(
         margin: const EdgeInsets.only(top: kDefaultPadding),
         padding: const EdgeInsets.all(kDefaultPadding),
@@ -63,7 +68,7 @@ class Options extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             Text(
+            Text(
               '${index + 1} $text',
               style: const TextStyle(color: kGrayColor, fontSize: 16),
             ),

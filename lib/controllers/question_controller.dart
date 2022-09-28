@@ -21,7 +21,16 @@ class QuestionController extends GetxController
       )
       .toList();
 
-      List<Question> get questions => _questions;
+  List<Question> get questions => _questions;
+
+  final bool _isAnswered = false;
+  bool get isAnswered => _isAnswered;
+
+  late int _correctAns;
+  int get correctAns => _correctAns;
+
+  late int _selectedAns;
+  int get selectedAns => _selectedAns;
 
   @override
   void onInit() {
