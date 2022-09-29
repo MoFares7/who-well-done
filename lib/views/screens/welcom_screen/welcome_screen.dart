@@ -13,7 +13,8 @@ class WelcomeSceen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          WebsafeSvg.asset('assets/icons/bg.svg'),
+          WebsafeSvg.asset('assets/icons/bg.svg',
+              fit: BoxFit.cover, width: double.maxFinite),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -29,7 +30,7 @@ class WelcomeSceen extends StatelessWidget {
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   const Text("Enter your informations below"),
-                  const Spacer(), // 1/6
+                  const Spacer(),
                   const TextField(
                     decoration: InputDecoration(
                       filled: true,

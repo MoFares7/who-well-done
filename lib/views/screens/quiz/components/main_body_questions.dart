@@ -18,7 +18,8 @@ class MainBody extends StatelessWidget {
     QuestionController questionController = Get.put(QuestionController());
     return Stack(
       children: [
-        WebsafeSvg.asset('assets/icons/bg.svg', width: double.infinity),
+        WebsafeSvg.asset('assets/icons/bg.svg',
+            fit: BoxFit.cover, width: double.maxFinite),
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),

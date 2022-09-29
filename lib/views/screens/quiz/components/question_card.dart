@@ -17,31 +17,35 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController questionController = Get.put(QuestionController());
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25), color: Colors.white),
-      child: Column(
-        children: [
-          Text(
-            question.question,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                ?.copyWith(color: kBlackColor),
-          ),
-          const SizedBox(
-            height: kDefaultPadding / 2,
-          ),
-          ...List.generate(
-              question.options.length,
-              (index) => Options(
-                  text: question.options[index],
-                  index: index,
-                  press: () =>
-                      questionController.checkFromAns(question, index)))
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: kDefaultPadding),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: kDefaultPadding),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25), color: Colors.white),
+        child: Column(
+          children: [
+            Text(
+              question.question,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: kBlackColor),
+            ),
+            const SizedBox(
+              height: kDefaultPadding / 2,
+            ),
+            ...List.generate(
+                question.options.length,
+                (index) => Options(
+                    text: question.options[index],
+                    index: index,
+                    press: () =>
+                        questionController.checkFromAns(question, index)))
+          ],
+        ),
       ),
     );
   }

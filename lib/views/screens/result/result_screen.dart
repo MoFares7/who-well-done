@@ -16,12 +16,13 @@ class ResultScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
+          SvgPicture.asset("assets/icons/bg.svg",
+              fit: BoxFit.fill, width: double.maxFinite),
           Column(
             children: [
               const Spacer(flex: 3),
               Text(
-                "Score",
+                "Your Score",
                 style: Theme.of(context)
                     .textTheme
                     .headline3
