@@ -5,33 +5,70 @@ class Question {
   final String question;
   final List<String> options;
 
-  Question({required this.id,required this.question,required this.answer,required this.options});
+  Question(
+      {required this.id,
+      required this.question,
+      required this.answer,
+      required this.options});
 }
 
 const List sample_data = [
   {
     "id": 1,
-    "question":
-        "Flutter is an open-source UI software development kit created by ______",
-    "options": ['Apple', 'Google', 'Facebook', 'Microsoft'],
+    "question": "What is the capital of Germany ______",
+    "options": ['Berlin', 'Paris', 'Liverpool', 'Cairo'],
     "answer_index": 1,
   },
   {
     "id": 2,
-    "question": "When google release Flutter.",
-    "options": ['Jun 2017', 'Jun 2017', 'May 2017', 'May 2018'],
-    "answer_index": 2,
+    "question": "What is the name of the current Saudi crown prince _____",
+    "options": [
+      'Ahmad bn Salman',
+      'Khlead bn Salman',
+      'Mohamad bn Salman',
+      'Fahd bn Salman'
+    ],
+    "answer_index": 3,
   },
   {
     "id": 3,
-    "question": "A memory location that holds a single letter or number.",
-    "options": ['Double', 'Int', 'Char', 'Word'],
+    "question": "Where is New Delhi located _____",
+    "options": ['China', 'India', 'Jaban', 'Bakstan'],
     "answer_index": 2,
   },
   {
     "id": 4,
-    "question": "What command do you use to output data to the screen?",
-    "options": ['Cin', 'Count>>', 'Cout', 'Output>>'],
+    "question":
+        "What is the name of the leader of the French campaign against Egypt ____",
+    "options": [
+      'Napoleon Bonaparte',
+      'Brad Bit',
+      'Maechile jackson',
+      'Ahmad Ali'
+    ],
+    "answer_index": 1,
+  },
+  {
+    "id": 5,
+    "question": "In what year was the Suez Canal founded _____",
+    "options": ['1953', '1954', '1955', '1956'],
+    "answer_index": 4,
+  },
+  {
+    "id": 6,
+    "question": "Who is the last of the Othoman sultans _____",
+    "options": [
+      'Suliman Kanone',
+      'Salem al thane',
+      'Mehmed Vahideddin',
+      'Abd Alhamed'
+    ],
+    "answer_index": 3,
+  },
+  {
+    "id": 7,
+    "question": "In what year was the internet invented? _____",
+    "options": ['1982', '1983', '1984', '1985'],
     "answer_index": 2,
   },
 ];
