@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/views/screens/welcom_screen/welcome_screen.dart';
 import 'package:get/get.dart';
 
+import 'config/theme.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Who Well Done',
-      theme: ThemeData.dark(),
+      theme: AppTheme.light(),
       home: const WelcomeSceen(),
     );
   }

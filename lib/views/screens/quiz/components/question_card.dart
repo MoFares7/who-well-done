@@ -25,26 +25,28 @@ class QuestionCard extends StatelessWidget {
             horizontal: kDefaultPadding, vertical: kDefaultPadding),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25), color: Colors.white),
-        child: Column(
-          children: [
-            Text(
-              question.question,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: kBlackColor),
-            ),
-            const SizedBox(
-              height: kDefaultPadding / 2,
-            ),
-            ...List.generate(
-                question.options.length,
-                (index) => Options(
-                    text: question.options[index],
-                    index: index,
-                    press: () =>
-                        questionController.checkFromAns(question, index)))
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                question.question,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(color: kBlackColor),
+              ),
+              const SizedBox(
+                height: kDefaultPadding / 2,
+              ),
+              ...List.generate(
+                  question.options.length,
+                  (index) => Options(
+                      text: question.options[index],
+                      index: index,
+                      press: () =>
+                          questionController.checkFromAns(question, index)))
+            ],
+          ),
         ),
       ),
     );
