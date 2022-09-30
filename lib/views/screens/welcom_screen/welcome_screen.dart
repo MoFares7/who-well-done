@@ -42,6 +42,7 @@ class WelcomeSceen extends StatelessWidget {
                         }
                         return null;
                       },
+                      keyboardType: TextInputType.name,
                       decoration: const InputDecoration(
                         filled: true,
                         fillColor: Color(0xFF1C2341),

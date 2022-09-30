@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/views/screens/splash_screen/splash_screen.dart';
-import 'package:quiz_app/views/screens/welcom_screen/welcome_screen.dart';
 import 'package:get/get.dart';
 
 import 'config/theme.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Who Well Done',
       theme: AppTheme.light(),
-      home:  WelcomeSceen(),
+      home:  const SplashScreen(),
     );
   }
 }
