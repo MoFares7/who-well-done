@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Who Well Done',
       theme: AppTheme.light(),
-      home: const SplashScreen(),
+      home:  WelcomeSceen(),
     );
   }
 }
